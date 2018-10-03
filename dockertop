@@ -1,0 +1,4 @@
+#!/bin/bash
+# Show stats for running containers
+
+docker stats --format "table {{.Container}}\t{{.Name}}\t{{.CPUPerc}}  {{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}"

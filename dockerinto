@@ -1,0 +1,6 @@
+#!/bin/bash
+# dockerinto container
+# start a shell inside the specified container
+# USAGE: dockerinto container-name/id
+
+docker exec -it $1 /bin/bash

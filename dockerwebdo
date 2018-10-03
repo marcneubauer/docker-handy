@@ -1,0 +1,7 @@
+#!/bin/bash
+# dockerwebdo
+# Run a command on the webserver's command line as www-data
+# this uses the local docker-compose in your current path
+# and only takes 1 argument, the command
+
+docker-compose exec --user www-data magento /bin/bash -c "$1"

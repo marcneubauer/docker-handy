@@ -1,0 +1,5 @@
+#!/bin/bash
+# Get the local ip address of a container
+# USAGE: dockerip container-name/id
+ 
+docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $1

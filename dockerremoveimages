@@ -1,0 +1,5 @@
+#!/bin/bash
+# dockerremoveimages
+# Remove all cached images
+
+docker rmi -f $(docker images -q)

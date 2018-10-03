@@ -1,0 +1,5 @@
+#!/bin/bash
+# dockerremovecontainers
+# Remove all current containers
+
+docker rm -f $(docker ps -a -q)

@@ -1,0 +1,5 @@
+#!/bin/bash
+# dockerremovevolumes
+# Remove all volumes, named and internal
+
+docker volume rm $(docker volume ls -q)
