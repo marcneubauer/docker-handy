@@ -1,0 +1,10 @@
+#!/bin/bash
+# Show stats for running containers
+# or a specific container
+
+if [ $# -eq 0 ]
+then
+ docker stats --no-stream;
+else
+ docker stats --no-stream | grep $1;
+fi 

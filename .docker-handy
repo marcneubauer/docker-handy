@@ -1,0 +1,62 @@
+
+# This makes it easy to issue a command to a container
+# USAGE: `dockerdo mage-mysql "mysql -uroot -proot magento -e 'select count(*) from core_config_data where path = \"web/unsecure/base_url\"'"`
+dockerdo(){
+	docker exec -i $1 /bin/bash -c "$2"
+}
+
+# dockerinto container
+# start a shell inside the specified container
+# USAGE: dockerinto container-name/id
+dockerinto(){
+	docker exec -it $1 /bin/bash
+}
+
+# Get the local ip address of a container
+# USAGE: dockerip container-name/id
+dockerip(){ 
+	docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $1#!/bin/bash
+}
+
+# dockerremovecontainers
+# Remove all current containers
+dockerremovecontainers(){
+	docker rm -f $(docker ps -a -q)#!/bin/bash
+}
+
+# dockerremoveimages
+# Remove all cached images
+dockerremoveimages(){
+	docker rmi -f $(docker images -q)#!/bin/bash
+}
+
+# dockerremovevolumes
+# Remove all volumes, named and internal
+dockerremovevolumes(){
+	docker volume rm $(docker volume ls -q)
+}
+
+# Show stats for running containers
+# or a specific container
+dockerstats(){
+
+	if [ $# -eq 0 ]
+	then
+		docker stats --no-stream;
+	else
+		docker stats --no-stream | grep $1;
+	fi 
+}
+
+# Show stats for running containers
+dockertop(){
+	docker stats --format "table {{.Container}}\t{{.Name}}\t{{.CPUPerc}}  {{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}"
+}
+
+# dockerwebdo
+# Run a command on the webserver's command line as www-data
+# this uses the local docker-compose in your current path
+# and only takes 1 argument, the command
+dockerwebdo(){
+	docker-compose exec --user www-data magento /bin/bash -c "$1"
+}
