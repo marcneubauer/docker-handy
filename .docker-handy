@@ -15,19 +15,19 @@ dockerinto(){
 # Get the local ip address of a container
 # USAGE: dockerip container-name/id
 dockerip(){ 
-	docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $1#!/bin/bash
+	docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $1
 }
 
 # dockerremovecontainers
 # Remove all current containers
 dockerremovecontainers(){
-	docker rm -f $(docker ps -a -q)#!/bin/bash
+	docker rm -f $(docker ps -a -q)
 }
 
 # dockerremoveimages
 # Remove all cached images
 dockerremoveimages(){
-	docker rmi -f $(docker images -q)#!/bin/bash
+	docker rmi -f $(docker images -q)
 }
 
 # dockerremovevolumes
